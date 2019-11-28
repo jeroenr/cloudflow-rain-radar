@@ -13,7 +13,7 @@ class RainLogger extends AkkaStreamlet {
     def flow = {
       FlowWithOffsetContext[Rain]
         .map { rain ⇒
-          system.log.debug(s"Rain detected: $rain")
+          system.log.info(s"Rain detected: $rain")
           rain
         }
     }
