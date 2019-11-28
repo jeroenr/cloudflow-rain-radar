@@ -1,0 +1,16 @@
+{
+    "namespace": "com.github.jeroenr.rain.radar",
+    "type": "record",
+    "name": "Location",
+    "fields":[
+         {
+            "name": "lat", "type": "double"
+         },
+         {
+            "name": "lng", "type": "double"
+         },
+         {
+            "name": "city", "type": "string"
+         }
+    ]
+}

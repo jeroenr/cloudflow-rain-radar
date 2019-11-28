@@ -1,0 +1,18 @@
+{
+    "namespace": "com.github.jeroenr.rain.radar",
+    "type": "record",
+    "name": "Clutter",
+    "fields":[
+         {
+             "name": "timestamp",
+             "type": {
+                 "type": "long",
+                 "logicalType": "timestamp-millis"
+             }
+          },
+         {
+            "name": "value", "type": "double"
+         }
+    ]
+}
+
