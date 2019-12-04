@@ -1,20 +1,25 @@
 package com.github.jeroenr.rain.radar
 
+import akka.event.Logging
 import cloudflow.akkastream._
 import cloudflow.akkastream.scaladsl._
 import cloudflow.streamlets._
 import cloudflow.streamlets.avro._
+import org.apache.avro.specific.SpecificRecordBase
 
-class RainLogger extends AkkaStreamlet {
-  val inlet = AvroInlet[Rain]("in")
+import scala.reflect.ClassTag
+
+abstract class LoggerStreamlet[T <: SpecificRecordBase : ClassTag](template: String,
+                                                                   logLevel: Logging.LogLevel = Logging.InfoLevel) extends AkkaStreamlet {
+  val inlet = AvroInlet[T](name = "in")
   val shape = StreamletShape.withInlets(inlet)
 
   override def createLogic = new RunnableGraphStreamletLogic() {
     def flow = {
-      FlowWithOffsetContext[Rain]
-        .map { rain ⇒
-          system.log.info(s"Rain detected: $rain")
-          rain
+      FlowWithOffsetContext[T]
+        .mapContext { element ⇒
+          system.log.log(logLevel, template, element)
+          element
         }
     }
 
@@ -23,3 +28,7 @@ class RainLogger extends AkkaStreamlet {
     }
   }
 }
+
+class RainLogger extends LoggerStreamlet[Rain]("Rain detected: {}")
+
+class ClutterLogger extends LoggerStreamlet[Clutter]("Clutter detected: {}")
