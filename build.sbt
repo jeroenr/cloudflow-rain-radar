@@ -1,7 +1,7 @@
 import sbt._
 import sbt.Keys._
 
-lazy val sensorData =  (project in file("."))
+lazy val rainRadar =  (project in file("."))
     .enablePlugins(CloudflowAkkaStreamsApplicationPlugin)
     .settings(
       libraryDependencies ++= Seq(
