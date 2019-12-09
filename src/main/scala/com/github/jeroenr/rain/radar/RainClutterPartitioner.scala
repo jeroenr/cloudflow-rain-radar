@@ -13,6 +13,7 @@ class RainClutterPartitioner extends AkkaStreamlet {
 
   override def createLogic = new SplitterLogic(in, clutter, rain) {
     def flow = flowWithOffsetContext()
+      .filter(_.value > 0) // disregard data if it's dry
       .map { precipitationData ⇒
         if(precipitationData.value <= 0.1) Left(Clutter(precipitationData.timestamp, precipitationData.value))
         else Right(Rain(precipitationData.timestamp, precipitationData.location.city, precipitationData.value))
