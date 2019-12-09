@@ -15,16 +15,11 @@ abstract class LoggerStreamlet[T <: SpecificRecordBase : ClassTag](template: Str
   val shape = StreamletShape.withInlets(inlet)
 
   override def createLogic = new RunnableGraphStreamletLogic() {
-    def flow = {
-      FlowWithOffsetContext[T]
-        .mapContext { element ⇒
-          system.log.log(logLevel, template, element)
-          element
-        }
-    }
-
     def runnableGraph = {
-      sourceWithOffsetContext(inlet).via(flow).to(sinkWithOffsetContext)
+      sourceWithOffsetContext(inlet).map { element ⇒
+        system.log.log(logLevel, template, element)
+        element
+      }.to(sinkWithOffsetContext)
     }
   }
 }
