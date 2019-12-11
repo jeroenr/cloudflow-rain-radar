@@ -2,7 +2,7 @@ import sbt._
 import sbt.Keys._
 
 lazy val rainRadar =  (project in file("."))
-    .enablePlugins(CloudflowAkkaStreamsApplicationPlugin)
+    .enablePlugins(CloudflowAkkaStreamsApplicationPlugin, CloudflowFlinkApplicationPlugin)
     .settings(
       libraryDependencies ++= Seq(
         "com.typesafe.akka"      %% "akka-http-spray-json"      % "10.1.10",

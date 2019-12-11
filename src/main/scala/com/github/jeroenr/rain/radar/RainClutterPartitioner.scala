@@ -1,22 +1,37 @@
 package com.github.jeroenr.rain.radar
 
-import cloudflow.akkastream._
-import cloudflow.akkastream.util.scaladsl._
+import cloudflow.flink.{FlinkStreamlet, FlinkStreamletLogic}
 import cloudflow.streamlets._
 import cloudflow.streamlets.avro._
+import org.apache.flink.api.scala._
+import org.apache.flink.streaming.api.functions.ProcessFunction
+import org.apache.flink.streaming.api.scala.OutputTag
+import org.apache.flink.util.Collector
 
-class RainClutterPartitioner extends AkkaStreamlet {
+class RainClutterPartitioner extends FlinkStreamlet {
   val in = AvroInlet[PrecipitationData]("in")
+  val out = AvroOutlet[Rain]("rain").withPartitioner(_.city)
   val clutter = AvroOutlet[Clutter]("clutter").withPartitioner(RoundRobinPartitioner)
-  val rain = AvroOutlet[Rain]("rain").withPartitioner(_.city)
-  val shape = StreamletShape(in).withOutlets(clutter, rain)
 
-  override def createLogic = new SplitterLogic(in, clutter, rain) {
-    def flow = flowWithOffsetContext()
-      .filter(_.value > 0) // disregard data if it's dry
-      .map { precipitationData ⇒
-        if(precipitationData.value <= 0.1) Left(Clutter(precipitationData.timestamp, precipitationData.value))
-        else Right(Rain(precipitationData.timestamp, precipitationData.location.city, precipitationData.value))
-      }
+  override protected def createLogic(): FlinkStreamletLogic = new FlinkStreamletLogic {
+    val outputTag = OutputTag[Clutter]("clutter-output")
+
+    override def buildExecutionGraph = {
+      val stream = readStream(in)
+        .filter(_.value > 0) // disregard data if it's dry
+        .process[Rain]((
+                   precipitationData: PrecipitationData,
+                   ctx: ProcessFunction[PrecipitationData, Rain]#Context,
+                   out: Collector[Rain]) => {
+          if (precipitationData.value > 0.1)
+            out.collect(Rain(precipitationData.timestamp, precipitationData.location.city, precipitationData.value))
+          else
+            ctx.output(outputTag, Clutter(precipitationData.timestamp, precipitationData.value))
+        })
+      writeStream(out, stream)
+      writeStream(clutter, stream.getSideOutput(outputTag))
+    }
   }
+
+  override def shape(): StreamletShape = ???
 }
