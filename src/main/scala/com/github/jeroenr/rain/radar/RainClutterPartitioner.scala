@@ -33,5 +33,5 @@ class RainClutterPartitioner extends FlinkStreamlet {
     }
   }
 
-  override def shape(): StreamletShape = ???
+  override def shape(): StreamletShape = StreamletShape(in).withOutlets(out, clutter)
 }
