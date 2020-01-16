@@ -32,7 +32,7 @@ $(kubectl -n rain-radar get po -lcom.lightbend.cloudflow/streamlet-name=http-ing
 ```
 * Push some data
 ```$bash
-for str in $(cat precipitation-data.json | jq -c '.[]')
+for str in $(cat sample-precipitation-data.json | jq -c '.[]')
 do
 echo "Using $str"
  curl -i -X POST http://localhost:3000 -H "Content-Type: application/json" --data "$str"
