@@ -1,0 +1,155 @@
+[
+  {
+    "timestamp": 1574909421250,
+    "location": {
+      "lat": -7.748919,
+      "lng": 18.255976,
+      "city": "Kohatk"
+    },
+    "value": 0.4479
+  },
+  {
+    "timestamp": 1574646775839,
+    "location": {
+      "lat": -57.701506,
+      "lng": -145.987204,
+      "city": "Cumminsville"
+    },
+    "value": 0.9374
+  },
+  {
+    "timestamp": 1574752947053,
+    "location": {
+      "lat": 77.906902,
+      "lng": -79.972082,
+      "city": "Hoehne"
+    },
+    "value": 0.1261
+  },
+  {
+    "timestamp": 1574833945538,
+    "location": {
+      "lat": 84.378455,
+      "lng": 109.946792,
+      "city": "Harviell"
+    },
+    "value": 0.0441
+  },
+  {
+    "timestamp": 1574147161010,
+    "location": {
+      "lat": -42.566327,
+      "lng": -29.493826,
+      "city": "Gardners"
+    },
+    "value": 0.1826
+  },
+  {
+    "timestamp": 1574334873189,
+    "location": {
+      "lat": 52.284445,
+      "lng": 61.222439,
+      "city": "Cuylerville"
+    },
+    "value": 0.5824
+  },
+  {
+    "timestamp": 1574071978495,
+    "location": {
+      "lat": -89.687116,
+      "lng": -61.336916,
+      "city": "Accoville"
+    },
+    "value": 0.7775
+  },
+  {
+    "timestamp": 1574917370207,
+    "location": {
+      "lat": 70.702747,
+      "lng": -64.168814,
+      "city": "Knowlton"
+    },
+    "value": 0.6553
+  },
+  {
+    "timestamp": 1574059499464,
+    "location": {
+      "lat": 84.889024,
+      "lng": 0.695291,
+      "city": "Hayden"
+    },
+    "value": 0.6769
+  },
+  {
+    "timestamp": 1574525502332,
+    "location": {
+      "lat": 54.651466,
+      "lng": -159.279646,
+      "city": "Deltaville"
+    },
+    "value": 0.6879
+  },
+  {
+    "timestamp": 1574252891845,
+    "location": {
+      "lat": -26.819115,
+      "lng": 91.442808,
+      "city": "Ernstville"
+    },
+    "value": 0.9426
+  },
+  {
+    "timestamp": 1574060206025,
+    "location": {
+      "lat": 21.320737,
+      "lng": 15.501584,
+      "city": "Kenmar"
+    },
+    "value": 0.568
+  },
+  {
+    "timestamp": 1574368753548,
+    "location": {
+      "lat": -59.542384,
+      "lng": 161.168006,
+      "city": "Unionville"
+    },
+    "value": 0.4788
+  },
+  {
+    "timestamp": 1574772498324,
+    "location": {
+      "lat": 34.281056,
+      "lng": 43.303123,
+      "city": "Elliott"
+    },
+    "value": 0.7491
+  },
+  {
+    "timestamp": 1574386948419,
+    "location": {
+      "lat": 72.820864,
+      "lng": 99.000089,
+      "city": "Herald"
+    },
+    "value": 0.4275
+  },
+  {
+    "timestamp": 1574610264313,
+    "location": {
+      "lat": -28.018451,
+      "lng": 124.902068,
+      "city": "Vallonia"
+    },
+    "value": 0.2976
+  },
+  {
+    "timestamp": 1574808044313,
+    "location": {
+      "lat": -1.550792,
+      "lng": 88.00281,
+      "city": "Enlow"
+    },
+    "value": 0.1697
+  }
+]
