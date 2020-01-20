@@ -1,0 +1,21 @@
+{
+    "namespace": "com.github.jeroenr.rain.radar",
+    "type": "record",
+    "name": "PrecipitationData",
+    "fields":[
+         {
+            "name": "timestamp",
+            "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+            }
+         },
+         {
+            "name": "location", "type": "com.github.jeroenr.rain.radar.Location"
+         },
+         {
+            "name": "value", "type": "double"
+         }
+    ]
+}
+
