@@ -14,3 +14,10 @@ trait InstantJsonSupport extends DefaultJsonProtocol {
     }
   }
 }
+
+object PrecipitationDataJsonSupport extends DefaultJsonProtocol with InstantJsonSupport {
+  implicit val locationFormat = jsonFormat3(Location.apply)
+  implicit val precipitationDataFormat = jsonFormat3(PrecipitationData.apply)
+  implicit val rainFormat = jsonFormat3(Rain.apply)
+  implicit val clutterFormat = jsonFormat2(Clutter.apply)
+}

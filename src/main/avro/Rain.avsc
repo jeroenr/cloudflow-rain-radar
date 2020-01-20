@@ -1,0 +1,21 @@
+{
+    "namespace": "com.github.jeroenr.rain.radar",
+    "type": "record",
+    "name": "Rain",
+    "fields":[
+         {
+            "name": "timestamp",
+            "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+            }
+         },
+         {
+            "name": "city", "type": "string"
+         },
+         {
+            "name": "value", "type": "double"
+         }
+    ]
+}
+
